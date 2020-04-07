@@ -1,3 +1,11 @@
+echo "-------------------------------ARRAY-----------------------------"
+echo  "ARRAY is the list of items"
+echo "Array in Programming Languages like C,C++,Java etc"
+echo "--- Array is the collection of similar items"
+#
+echo "Array in Scripting Languages(bash, python, perl etc)"
+echo "--- Array the collection of list irrespective of their types(i.e. int, strings)"
+
 #!/bin/bash
 array=(one two three four 11 22 33 44)
 echo "-----------------------------------------------------------"
