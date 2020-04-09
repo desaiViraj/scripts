@@ -1,19 +1,19 @@
 #/bin/bash
 factorial()
 {
-	fact=1
 	if [[ "$1" -gt "1" ]]
 	then
-		fact=`expr $fact * $1`
-		k=`expr $1 - 1`
-		j=`factorial $k`
-		echo $j
+		i=`expr $1 - 1`
+		j=`factorial $i`
+		k=`expr $1 \* $j`
+		#j=`factorial $k`
+		echo $k
 	else
-		exit 1
+		exit
 	fi
 }
 
-while [ True ]
+while :
 do
 	echo -n "Enter a number: "
 	read num
