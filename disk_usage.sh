@@ -9,4 +9,3 @@ then
 else
 	echo -e "OK: usage=$usage"
 fi
-
