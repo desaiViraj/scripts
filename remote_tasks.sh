@@ -4,8 +4,9 @@ cat << EOF
 2. Archive the files available on remote linux machine
 3. Fetch the list of users and groups from remote linux machines
 4. Start/stop a service on remote linux machine
+5. Exit
 EOF
-
+read -p "Enter your choice:" $choice
 copy()
 {
 	read -p "Enter the file/directory that you want to copy:" $data
@@ -36,6 +37,27 @@ fetch()
 	ssh user@worker /bin/bash >> cat /etc/passwd | awk -F ":" '{ print $1 }'
 }
 
+service_manage()
+{
+do{
+	echo "1. Start
+	      2. Stop
+	      3. Exit"
+	read ch
+	case $ch in
+		1)
+			;;
+		2)
+			;;
+		3)
+			exit
+			;;
+		*)
+			echo "Invalid Input"
+			;;
+	esac
+
+}
 case $choice in 
 	1)
 		copy
@@ -47,7 +69,12 @@ case $choice in
 		fetch
 		;;
 	4)
+		service_manage
+		;;
+	5)
+		exit
 		;;
 	*)
+		echo "Invalid Input"
 		;;
 esac
