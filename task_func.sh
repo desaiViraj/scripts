@@ -13,19 +13,25 @@ factorial()
 
 reverse()
 {
-	if [ $1 -eq "0" ]
-	then
-		echo "You entered $1"
+#	if [ $1 -eq "0" ]
+#	then
+#		echo "You entered $1"
 
-	else
-		a=123
-	        a=`expr $1 % 10`
-		echo $a
-		b=`expr $a / 10`
-		c=`expr $a + $b`
-		echo $c
-	fi
-
+#	else
+		n=$1
+		rev=0
+		while [ "$n" -gt "0" ]
+		do
+			#local rev=0
+			#local n=$1
+	        	a=`expr $n % 10`
+			rev=`expr $rev \* 10 + $a`
+			#echo $rev
+			n=`expr $n / 10`
+		#	echo "Reverse of $1 is $rev"
+		done
+			echo "Reverse of $1 is $rev"
+#	fi
 }
 
 sum_reverse()
