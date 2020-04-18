@@ -31,6 +31,8 @@ reverse()
 		#	echo "Reverse of $1 is $rev"
 		done
 			echo "Reverse of $1 is $rev"
+			sum_reverse
+			echo "Sum of $1 is $?"
 #	fi
 }
 
