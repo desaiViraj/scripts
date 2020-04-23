@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "*************************************************************************************"
+echo "PARTITION TABLE: This information are stored in the MBR(Master Boot Record)"
+echo "To wipe out Partitions information from Partition Table, run below command:"
+echo "dd if=/dev/zero of=/dev/sda bs=512 count=1"
+echo "To wipe out whole partition or disk"
+echo "dd if=/dev/zero of=/dev/sda"
+echo "-------------------------------------------------------------------------------------"
+echo "To update Partition Table, run partprobe command"
+echo "*************************************************************************************"
+echo "---------------------------------LOGICAL DRIVES--------------------------------------"
+echo "Partition Table does not contain information about Logical Drives."
+echo "To Backup all partitions and logical drives."
+echo "#sfdisk -d /dev/sda > parttable.sda.sfdisk"
+echo "Copy the info from /dev/sda to /dev/sdb/"
+echo "#sfdisk -d /dev/sda | sfdisk /dev/sdb"
+
