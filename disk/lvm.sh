@@ -67,6 +67,55 @@ You will notice that /dev/sda1 size is still 100M, LVM is still using old size.
 pvresize will make lvm aware of the size change of the partition.
 
 MIRROR A LOGICAL VOLUME
+Min 3 Physical Volumes.
+#pvcreate /dev/sda /dev/sdb /dev/sdc
+#vgcreate myvg /dev/sda /dev/sdb /dev/sdc
+#lvcreate --size 300m -n mylv -m 1 myvg
+options:
+-m = mirror
+-n = name
 
+SNAPSHOT A LOGICAL VOLUME
+A snapshop is a virtual copy of all the data at a point in time on a volume.
+#lvcreate -L 100M -n snapLV myvg
+#lvs -->To check
+
+
+VERIFYING EXISTING PHYSICAL VOLUME
+To list block devices that can be used with LVM
+#lvmdiskscan
+#pvs
+#pvscan
+#pvdisplay
+#
+
+VERIFYING EXISTING VOLUME GROUP
+#vgs
+#vgscan
+#vgdisplay
+
+VERIFYING EXISTING LOGICAL VOLUME
+#lvs
+#lvscan
+#lvdisplay
+
+MANAGE
+#pvcreate ---> To add devices to LVM
+#pvremove ---> To remove physical devices from LVM
+#pvresize ---> To make LVM recognize of physical disk size change
+#pvchange ---> To prevent Allocation
+#pvmove   ---> Move LV from within a VG to another PV
+
+#vgcreate ---> To create Volume Group
+#vgextend ---> To extend existing VG
+#vgremove ---> To remove VG from lvm
+#vgreduce ---> To remove PV from VG
+#vgchange ---> To change parameters of VG
+#vgmerge  ---> To Merge 2 VGs into one
+
+#lvcreate ---> To create Logical Volume from VG
+#lvremove ---> To remove LV from VG
+#lvextend ---> To extend size of LV
+#lvrename ---> To rename LV
 EOF
 echo "_______________________________________________________________________________________"
