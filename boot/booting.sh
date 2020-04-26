@@ -115,17 +115,52 @@ initdefualt is the default runlevel.
 init scripts:
 /etc/rc.d/rc.sysinit
 
+daemon
+A daemon is a process that runs in background.
+Parameters:
+start|stop|restart|status
 
+chkconfig
+To check the status of services
+#chkconfig --list
+
+RUNLEVEL
+TO check current runlevel, run:
+#runleven
+#who -r
+To change current runlevel edit /etc/inittab file with desired runlevel.
+
+/sbin/shutdown
+Options:
+-a allow
+-t terminate with timeout(t)
+-h halts
+-r reboot
+
+halt,reboot,shutdown will write to /var/log/wtmp
 
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
+SYSTEMD
+systemd will be repalcing init.
+Starts the init scripts in parallel.
+Runlevels are known as targets.
+#systemctl list-units --type=target
+/etc/systemd/system
+
+chkconfig and service command are replaced with systemctl.
+_________________________________________________________
+REMOTE SYSTEMD
+It has build-in remote control feature.
+
+#systemctl -H root@192.168.3.2 status sshd
+_________________________________________________________
+
+MORE SYSTEMD
+#systemd-analyze blame | head   ---> To taken by each service to boot.
+
+#systemd-cat
+#systemd-run
 
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
 EOF
