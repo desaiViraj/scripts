@@ -67,6 +67,52 @@ It is a private tpc/ip network.(within one organization)
 
 EXTRANET
 It is similar to INTRANET with addition access to trusted organizations.
+*************************************************************************************
+
+rfc(Request For Comment)
+The protocol that are used on the internet are defined in rfc's.
+It describes the inner working of all internet protocols.
+Ex. rfc2132(defines dhcp and bootp)
+
+TCP - Connection Oriented
+UDP - Connectionless
+`cat /etc/protocols | egrep -e TCP -e UDP`
+
+To see the list of PORT Numners:
+cat /etc/services
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NETWORK CONFIGURATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+DEBIAN
+/etc/network/interfaces
+
+RHEL
+/etc/sysconfig/network
+/etc/sysconfig/network-scripts/ifcfg-
+
+To Display Hostname:
+sysctl kernel.hostname
+
+To Set Hostname:
+sysctl kernel.hostname=ubuntu
+
+arp(Address Resolution Protocol)
+IP to MAC resolution is handled by ARP protocol.
+
+arp -a ---> To display all entries
+arp -d ---> To remove entry
+Other Commands:
+#route
+#netstat -r
+-----------------------------------------------------------------------------
+
+To Display or change network card settings
+Use ethtool
+#ethtool eth0
+
++++++++++++++++++++++++++++++++NETWORK SNIFFING++++++++++++++++++++++++++++++
+TOOLS: Wireshark, tcpdump
+
+
 
 
 NET
