@@ -112,9 +112,92 @@ Use ethtool
 +++++++++++++++++++++++++++++++NETWORK SNIFFING++++++++++++++++++++++++++++++
 TOOLS: Wireshark, tcpdump
 
+To create:
+$ sudo tcpdump -w sshdump.tcpdump tcp port 22
+To Display:
+$ sudo tcpdump -r sshdump.tcpdump
 
+*****************************************************************************
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!BINDING and BONDING!!!!!!!!!!!!!!!!!!!!!!!!!!
+Sometimes server needs more than one IP address on the same network card.
+This is called Binding.
 
+Activating multiple network cards behind the same IP address.
+This is called Bonding
 
+To Bind extra IP[RHEL]:
+1. ADDING
+MAIN IP
+#vi /etc/sysconfig/network-scripts/ifcfg-eth0:0
+DEVICE="eth0:0"
+IPADDR="192.168.10.11"
+
+Add, : and digit to add extra IP
+#vi /etc/sysconfig/network-scripts/ifcfg-eth0:1
+DEVICE="eth0:0"
+IPADDR="192.168.10.12"
+
+2. ENABLING
+#ifup eth0:0
+#ifup eth0:1
+
+3. VERIFYING
+#ifconfig
+Or ping from another server.
+
+To Bind extra IP[DEBIAN]:
+1. ADDING
+#vi /etc/network/interfaces
+
+2. ENABLING
+#ifup eth0:0
+#ifup eth0:1
+
+3. VERIFYING
+#ifconfig
+Or ping from another server.
+
+BONDING
+On RHEL
+
+1. List the network cards
+#ifconfig -a | grep Ethernet
+
+2. Add entry to modprobe(To make kernel aware)
+#vim /etc/modprobe.d/bonding.conf
+alias bond0 bonding
+
+3. Create bond0 interface
+#vim /etc/sysconfig/network-scripts/ifcfg-bond0
+DEVICE=bond0
+IPADDR=192.168.10.123
+NETMASK=255.255.255.0
+ONBOOT=yes
+BOOTPROTO=none
+USERCTL=no
+:wq
+
+4. Create 2 Slave files, one for each network card.
+#vim ifcfg-eth1
+DEVICE=eth1
+ONBOOT=yes
+BOOTPROTO=none
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+
+#vim ifcfg-eth2
+DEVICE=eth0
+ONBOOT=yes
+BOOTPROTO=none
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+
+5. Bring UP the interface
+#ifup bond0
+
+#cat /proc/net/bonding
 NET
 echo "_____________________________________________________________________________________________"
 
