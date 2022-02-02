@@ -6,6 +6,7 @@ A shell script is a file that contains ASCII text.
 A shell is a command line interpreter.
 
 Interpreter v/s Compiler
+
 Interpreter: 
 Take a single line of code/instruction at a time.
 Compilation and execution is done simultaneously.
